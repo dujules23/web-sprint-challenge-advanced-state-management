@@ -1,5 +1,6 @@
+import { FETCH_SMURFS_START, FETCH_SMURFS_HAPPY, FETCH_SMURFS_SAD } from '../actions/index'
 
-export const initialState = {
+const initialState = {
     smurfs: [],
     isLoading: false,
     error: ''
@@ -7,10 +8,26 @@ export const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
+        case FETCH_SMURFS_START:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case FETCH_SMURFS_HAPPY:
+            return {
+                ...state,
+                smurfs: action.payload,
+                isLoading: false
+            }
+        case FETCH_SMURFS_SAD:
+            return {
+                ...state,
+                error: action.payload
+            }    
         default:
             return state;
-    }
-}
+    };
+};
 
 export default reducer;
 
