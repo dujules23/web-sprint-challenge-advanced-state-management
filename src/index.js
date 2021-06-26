@@ -15,9 +15,10 @@ worker.start();
 
 const rootElement = document.getElementById("root");
 
-
+// create store
 const store = createStore(reducer, applyMiddleware(logger, thunk))
 
+// Wrap application in the Provider 
 ReactDOM.render(
     <Provider store={store}>
         <App />

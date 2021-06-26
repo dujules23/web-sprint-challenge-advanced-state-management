@@ -1,9 +1,9 @@
-import { FETCH_SMURFS_START, FETCH_SMURFS_HAPPY, FETCH_SMURFS_SAD } from '../actions/index'
+import { FETCH_SMURFS_START, FETCH_SMURFS_HAPPY, FETCH_SMURFS_SAD, ADD_SMURF, SET_ERROR, ERROR_MESSAGE } from '../actions/index'
 
 const initialState = {
     smurfs: [],
     isLoading: false,
-    error: ''
+    error: ""   
 }
 
 const reducer = (state = initialState, action) => {
@@ -23,7 +23,23 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: action.payload
-            }    
+            }
+        case ADD_SMURF:
+            return {
+                ...state,
+                smurfs: action.payload
+            } 
+        case SET_ERROR:
+            const newError ={error: action.payload}
+            return {
+                ...state,
+                error: newError
+            }
+        case ERROR_MESSAGE:
+            return{
+                ...state,
+                error: "Name, position and nickname fields are required."
+            }
         default:
             return state;
     };
